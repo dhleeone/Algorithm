@@ -1,21 +1,31 @@
-def solution(files):
-    li=[]
-    for file in files:
-        for i in range(len(file)):
-            if file[i].isdecimal() == True:
-                head = file[:i]
-                first_num = i
-                break
-        for j in range(first_num, len(file)):
-            if file[j].isdecimal() == False:
-                num = file[first_num:j]
-                tail = file[j:]
-                break
-        li.append([head, num, tail])
-        li.sort(key=lambda x: int(x[1]))
-        li.sort(key=lambda x: x[0].lower())
+def solution(numbers, target):
+    stack = []
+    
+    def dfs(numbers, target, start):
+        nonlocal stack    
+        if start>len(numbers)-1:
+            return 
 
+        numbers[start] = (-1) * numbers[start]
+        
+        if sum(numbers) == target:
+            if numbers not in stack:
+                stack.append(numbers)
+                return
 
-        answer = ["".join(i) for i in li]
+        elif sum(numbers)>target:
+            dfs(numbers, target, start+1)
 
+        elif sum(numbers)<target:
+            numbers[start] = (-1) * numbers[start]
+            dfs(numbers, target, start+1)
+    
+    if sum(numbers) == target:
+        return 1
+
+    for i in range(len(numbers)):
+        reset_numbers = numbers.copy()
+        dfs(reset_numbers, target, i)
+        answer=len(stack)
+        
     return answer
