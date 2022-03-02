@@ -1,3 +1,4 @@
+# 1차
 def solution(files):
     li=[]
     for file in files:
@@ -19,5 +20,28 @@ def solution(files):
         answer = ["".join(i) for i in li]
 
     return answer
-
 # 25/100
+
+
+# 2차 - 해결
+def solution(files):
+    li=[]
+    for file in files:
+        num_fin = False
+        head, num, tail = '', '', ''
+        for i in range(len(file)):
+            if not num_fin and file[i].isdigit()==False:
+                head += file[i]
+            elif file[i].isdigit():
+                num_fin = True
+                num +=file[i]
+            else:
+                tail+=file[i:]
+                break
+        li.append((head, num, tail))
+        
+    li.sort(key=lambda x: (x[0].lower(), int(x[1])))
+    answer = ["".join(i) for i in li]
+
+    return answer
+#for문 줄이기, 런타임에러 해소
