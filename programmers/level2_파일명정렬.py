@@ -44,4 +44,5 @@ def solution(files):
     answer = ["".join(i) for i in li]
 
     return answer
+
 #for문 줄이기, 런타임에러 해소
