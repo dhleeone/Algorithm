@@ -29,20 +29,17 @@ def solution(expression):
                             minus = exp_c[i-1] - exp_c[i+1]
                             exp_c[i-1] = minus
                             del exp_c[i:i+2]
-                            break
 
                         elif op[idx] == "+":
                             plus = exp_c[i-1] + exp_c[i+1]
                             exp_c[i-1] = plus
                             del exp_c[i:i+2]
-                            break
-
+                            
                         elif op[idx] == "*":
                             mul = exp_c[i-1] * exp_c[i+1]
                             exp_c[i-1] = mul
-                            del exp_c[i:i+2]
-                            break
-
+                            del exp_c[i:i+2]                        
+                        break
         answer_li.append(abs(exp_c[0]))
     answer = max(answer_li)
     
