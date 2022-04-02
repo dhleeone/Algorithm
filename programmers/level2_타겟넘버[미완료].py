@@ -1,31 +1,18 @@
 def solution(numbers, target):
-    stack = []
-    
-    def dfs(numbers, target, start):
-        nonlocal stack    
-        if start>len(numbers)-1:
-            return 
+    answer = 0
+    len_numbers = len(numbers)
 
-        numbers[start] = (-1) * numbers[start]
-        
-        if sum(numbers) == target:
-            if numbers not in stack:
-                stack.append(numbers)
-                return
+    def dfs(numbers, target, idx):
+        if idx < len_numbers:
+            numbers[idx] *= 1
+            dfs(numbers, target, idx+1)
 
-        elif sum(numbers)>target:
-            dfs(numbers, target, start+1)
+            numbers[idx] *= -1
+            dfs(numbers, target, idx+1)
 
-        elif sum(numbers)<target:
-            numbers[start] = (-1) * numbers[start]
-            dfs(numbers, target, start+1)
-    
-    if sum(numbers) == target:
-        return 1
-
-    for i in range(len(numbers)):
-        reset_numbers = numbers.copy()
-        dfs(reset_numbers, target, i)
-        answer=len(stack)
-        
+        elif sum(numbers) == target:
+            nonlocal answer
+            answer += 1
+            
+    dfs(numbers, target, 0)
     return answer
