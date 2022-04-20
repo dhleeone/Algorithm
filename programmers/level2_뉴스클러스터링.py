@@ -27,7 +27,6 @@ def solution(str1, str2):
     outer += max_num
     if outer == 0:
         return 65536
-    sim = min_num / outer
     answer = int((min_num / outer) * 65536)
     return answer
     
