@@ -18,10 +18,10 @@ def solution(n, edge):
                 visited.append(nnd)
                 cnt_li[nnd] += (cnt_li[node] + 1)
     return cnt_li.count(max(cnt_li))
-
 # 8, 9번 시간초과
 
-# 풀이 2
+
+# 풀이 2 - 통과
 from collections import deque
 
 def solution(n, edge):
