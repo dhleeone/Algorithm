@@ -42,3 +42,11 @@ SELECT COUNT(*) AS 'count' FROM ANIMAL_INS;
 -- 중복 제거하기
 SELECT COUNT(DISTINCT NAME) FROM ANIMAL_INS;
 -- count 함수는 Null을 세지 않음
+
+
+-- 같은 테이블 join (https://programmers.co.kr/learn/courses/30/lessons/62284)
+SELECT A.CART_ID
+FROM CART_PRODUCTS AS A
+INNER JOIN CART_PRODUCTS AS B
+ON A.CART_ID = B.CART_ID
+WHERE A.NAME = "Milk" AND B.NAME = "Yogurt";
