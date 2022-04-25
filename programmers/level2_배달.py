@@ -1,3 +1,5 @@
+# 다익스트라
+
 from collections import deque
 
 def solution(N, road, K):
