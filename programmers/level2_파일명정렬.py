@@ -1,4 +1,4 @@
-# 1차
+# 1차 - 미통과
 def solution(files):
     li=[]
     for file in files:
