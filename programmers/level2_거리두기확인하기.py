@@ -24,19 +24,25 @@ def bfs(mat, a, b):
         visited.append([False] * len(mat[0]))
         
     queue = deque([(a, b, cnt)])
-    
     while queue:
         x, y, cnt = queue.popleft()
         visited[x][y] = True
-
+        
         for i in range(4):
             nx, ny = x+dx[i], y+dy[i]
-            if nx < 0 or ny < 0 or nx >= len(mat) or ny >= len(mat[0]) or visited[nx][ny] or mat[nx][ny] == "X":
+            if nx < 0 or ny < 0 or nx >= len(mat) or ny >= len(mat[0]):
                 continue
-
+                
+            elif visited[nx][ny] or mat[nx][ny] == "X":
+                if cnt > 1:
+                    cnt -= 1
+                continue
+                
             elif mat[nx][ny] == "P":
-                visited[nx][ny] = True
                 cnt += 1
+
+                visited[nx][ny] = True
+                
                 if (abs(a-nx) + abs(b-ny)) <= 2 and cnt<=2:
                         is_zero = True
                 return is_zero
@@ -46,7 +52,7 @@ def bfs(mat, a, b):
                 cnt += 1
                 queue.append((nx, ny, cnt))
 
-    return is_zero
+    return False
 
 
 def solution(places):
@@ -56,6 +62,7 @@ def solution(places):
         p_li = loc_p(mat)
         is_z = False
         for p in p_li:
+
             l, r = p[0], p[1]
             if bfs(mat, l, r):
                 is_z = True
@@ -63,7 +70,8 @@ def solution(places):
             answer.append(0)
         else:
             answer.append(1)
+        
     return answer
 
 # 정확성
-# 92.8 / 100.0
+# 96.4 / 100.0
